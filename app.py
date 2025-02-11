@@ -8,4 +8,4 @@ def hello_world():
     if name == None:
         return render_template("index.html")
     else:
-        return "Greetings, " + name, "!"
+        return "Greetings, " + name
