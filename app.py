@@ -4,8 +4,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    name = request.args.get("name")
-    if name == None:
+    username = request.args.get("username")
+    if username == None:
         return render_template("index.html")
+    elif username == "John":
+        return "Hello, John :D"
     else:
-        return "Greetings, " + name
+        return "user not recognised >:[ "
+    
+    
