@@ -5,11 +5,11 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     username = request.args.get("username")
-    if username == None:
+    Password = request.args.get("Password")
+    if Password == None:
         return render_template("index.html")
-    elif username == "John":
+    elif Password == "123":
         return "Hello, John :D"
     else:
-        return "user not recognised >:[ "
-    
+        return "Wrong Password :P "
     
