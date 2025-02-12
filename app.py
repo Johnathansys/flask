@@ -9,6 +9,6 @@ def login():
     if Password == None:
         return render_template("index.html")
     elif Password == "123":
-        return "Greetings, ",Username,"!"
+        return "Greetings, " + Username + "!"
     else:
         return "Wrong Password :P "
