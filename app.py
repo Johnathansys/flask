@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def login():
-    Username = request.args.get("username")
+    Username = request.args.get("Username")
     Password = request.args.get("Password")
     if Password == None:
         return render_template("index.html")
