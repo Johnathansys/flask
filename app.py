@@ -8,8 +8,8 @@ def signup():
             return render_template("signup.html")
         else:   
             f = open("login.txt", "w")
-            f.write(request.from["Username"])
-            f.write(request.from["Password"])
+            f.write(request.form["Username"])
+            f.write(request.form["Password"])
             f.close()
         return "Signup successful!"
 
