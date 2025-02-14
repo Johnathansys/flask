@@ -20,9 +20,10 @@ def login():
     else:
         Username = request.form["Username"]
         Password = request.form["Password"]
-        if Password == "123":
+        f = open("login.txt", "r")
+        un = f.readline().strip()
+        pw = f.readline()
+        if Password == pw and Username == un:
             return "Greetings, " + Username + "!"
         else:
-            return "Wrong Password :P "
-        
-        
+            return "There's something wrong with the password of the login "
