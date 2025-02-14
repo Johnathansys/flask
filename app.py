@@ -6,9 +6,11 @@ app = Flask(__name__)
 def signup():
         if request.method == "GET":
             return render_template("signup.html")
-        else:
-            Username = request.form["Username"]
-            Password = request.form["Password"]    
+        else:   
+            f = open("login.txt", "w")
+            f.write(request.from["Username"])
+            f.write(request.from["Password"])
+            f.close()
         return "Signup successful!"
 
 @app.route("/", methods=["GET", "POST"])
