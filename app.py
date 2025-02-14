@@ -8,7 +8,7 @@ def signup():
             return render_template("signup.html")
         else:   
             f = open("login.txt", "w")
-            f.write(request.form["Username"])
+            f.write(request.form["Username"] + "\n")
             f.write(request.form["Password"])
             f.close()
         return "Signup successful!"
@@ -24,3 +24,5 @@ def login():
             return "Greetings, " + Username + "!"
         else:
             return "Wrong Password :P "
+        
+        
