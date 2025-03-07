@@ -2,11 +2,11 @@ import sqlite3
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 cur.execute("""
-            CREATE TABLE Student
+            CREATE TABLE Employee
             (
-            StudentID VARCHAR(6) PRIMARY KEY,
-            Surname VARCHAR(20) NOT NULL,
-            FirstName VARCHAR(15),
-            DateOfBirth DATE
+            EmpID INTEGER NOT NULL, PRIMARY KEY,
+            EmpName VARCHAR(20) NOT NULL,
+            HireDate DATE,
+            Salary  CURRENCY
             )
         """)
