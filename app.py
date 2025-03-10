@@ -22,7 +22,7 @@ def signup():
         con = sqlite3.connect("userdata.db")
         cur = con.cursor()
         cur.execute("INSERT INTO User (username, password) VALUES (?, ?)",
-                        (request.form["Username"], request.form["Password"])
+                        (request.form["Username"], request.form["Password"]))
         con.commit()
         con.close()
     return "Signup Sucessful"
