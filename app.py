@@ -1,17 +1,18 @@
+from flask import Flask, render_template, request
 import sqlite3
+
+app = Flask(__name__)
+
 con = sqlite3.connect("userdata.db")
 cur = con.cursor()
 cur.execute("""
-            CREATE TABLE user
+            CREATE TABLE User
             (
             username TEXT NOT NULL PRIMARY KEY,
-            password TEXT NOT NULL
+            password TEXT NOT NULL;
             )
         """)
 
-from flask import Flask, render_template, request
-
-app = Flask(__name__)
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
