@@ -8,8 +8,8 @@ cur = con.cursor()
 cur.execute("""
             CREATE TABLE IF NOT EXISTS User
             (
-            username TEXT NOT NULL PRIMARY KEY,
-            password TEXT NOT NULL;
+            username VARCHAR(20) NOT NULL PRIMARY KEY,
+            password VARCHAR(20) NOT NULL;
             )
         """)
 
@@ -17,6 +17,12 @@ cur.execute("""
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "GET":
+        con = sqlite3.connect("userdata.db")
+        cur = con.cursor()
+        cur.execute(""" INSERT INTO User (username, password)
+                        VALUES (Username, Password)
+                    """)
+        con.commit()
         return render_template("signup.html")
     return "Signup Sucessful"
     
