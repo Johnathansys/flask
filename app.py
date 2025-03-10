@@ -6,7 +6,7 @@ app = Flask(__name__)
 con = sqlite3.connect("userdata.db")
 cur = con.cursor()
 cur.execute("""
-            CREATE TABLE User
+            CREATE TABLE IF NOT EXISTS User
             (
             username TEXT NOT NULL PRIMARY KEY,
             password TEXT NOT NULL;
