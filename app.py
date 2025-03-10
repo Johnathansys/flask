@@ -9,7 +9,7 @@ cur.execute("""
             CREATE TABLE IF NOT EXISTS User
             (
             username VARCHAR(20) NOT NULL PRIMARY KEY,
-            password VARCHAR(20) NOT NULL;
+            password VARCHAR(20) NOT NULL
             )
         """)
 
@@ -17,13 +17,14 @@ cur.execute("""
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "GET":
+        return render_template("signup.html")
+    else:
         con = sqlite3.connect("userdata.db")
         cur = con.cursor()
-        cur.execute(""" INSERT INTO User (username, password)
-                        VALUES (Username, Password)
-                    """)
+        cur.execute("INSERT INTO User (username, password) VALUES (?, ?)",
+                        (request.form["Username"], request.form["Password"])
         con.commit()
-        return render_template("signup.html")
+        con.close()
     return "Signup Sucessful"
     
 @app.route("/", methods=["GET", "POST"])
