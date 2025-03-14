@@ -34,6 +34,12 @@ def login():
     else:
         Username = request.form["Username"]
         Password = request.form["Password"]
+        con = sqlite3.connect("userdata.db")
+        cur = con.cursor()
+        cur.execute("SELECT User.username, User.password) VALUES (?, ?)",
+                        (request.form["Username"], request.form["Password"]))
+        con.commit()
+        con.close()
         if Password == "123" and Username == "Bob":
             return "Hello" + Username
         else:
