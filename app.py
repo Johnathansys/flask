@@ -34,12 +34,15 @@ def login():
     else:
         con = sqlite3.connect("userdata.db")
         cur = con.cursor()
-        cur.execute("""SELECT username, password 
-                        FROM User """,
+        cur.execute("SELECT * FROM User WHERE username = ? and password = ?",
                         (request.form["Username"], request.form["Password"]))
+        data = cur.fetchall()
         con.commit()
         con.close()
-        if Password == "123" and Username == "Bob":
-            return "Hello" + Username
+        if len(data) == 0:
+            return "Login Unsucessful"
         else:
-            return "Login Failed"
+            return "Login Sucessful"
+        
+if __name__ == "__main__":
+    app.run(debug=True)
