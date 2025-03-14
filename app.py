@@ -32,8 +32,6 @@ def login():
     if request.method == "GET":
         return render_template("index.html")
     else:
-        Username = request.form["Username"]
-        Password = request.form["Password"]
         con = sqlite3.connect("userdata.db")
         cur = con.cursor()
         cur.execute("SELECT User.username, User.password) VALUES (?, ?)",
