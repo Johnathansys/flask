@@ -21,10 +21,7 @@ def signup():
     else:
         con = sqlite3.connect("userdata.db")
         cur = con.cursor()
-        cur.execute("""INSERT INTO User (username, password) VALUES (?, ?)
-                        FROM User
-                        
-                    """,
+        cur.execute("INSERT INTO User (username, password) VALUES (?, ?)",
                         (request.form["Username"], request.form["Password"]))
         con.commit()
         con.close()
@@ -37,7 +34,10 @@ def login():
     else:
         con = sqlite3.connect("userdata.db")
         cur = con.cursor()
-        cur.execute("SELECT username, password)",
+        cur.execute("""SELECT username, password 
+                        FROM User
+                        
+                    """,
                         (request.form["Username"], request.form["Password"]))
         con.commit()
         con.close()
