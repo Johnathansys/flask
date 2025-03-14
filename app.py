@@ -35,9 +35,7 @@ def login():
         con = sqlite3.connect("userdata.db")
         cur = con.cursor()
         cur.execute("""SELECT username, password 
-                        FROM User
-                        
-                    """,
+                        FROM User """,
                         (request.form["Username"], request.form["Password"]))
         con.commit()
         con.close()
