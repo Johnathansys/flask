@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 import sqlite3
 import hashlib
 
-app = Flask(__name__)
 
+app = Flask(__name__)
+app.secret_key = "random"
 con = sqlite3.connect("userdata.db")
 cur = con.cursor()
 cur.execute("""
@@ -48,7 +49,8 @@ def login():
         if len(data) == 0:
             return "Login Unsucessful"
         else:
-            return "Welcome, " + request.form["Username"]
+            session["Username"] = request.form["Username"]
+            return render_template("welcome.html")
         
 if __name__ == "__main__":
     app.run(debug=True)
