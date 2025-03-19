@@ -42,7 +42,7 @@ def login():
         if len(data) == 0:
             return "Login Unsucessful"
         else:
-            return "Login Sucessful"
+            return "Welcome, " + request.form["Username"]
         
 if __name__ == "__main__":
     app.run(debug=True)
