@@ -52,10 +52,14 @@ def login():
             session["Username"] = request.form["Username"]
             return render_template("welcome.html")
 
+@app.route("/w")
+def welcome():
+    return render_template("welcome.html")
+
 @app.route("/logout")
 def logout():
     session.pop("Username", None)
-    return redirect(url_for("login"))
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)
