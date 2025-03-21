@@ -51,6 +51,11 @@ def login():
         else:
             session["Username"] = request.form["Username"]
             return render_template("welcome.html")
-        
+
+@app.route("/logout")
+def logout():
+    session.pop("Username", None)
+    return redirect(url_for("login"))
+
 if __name__ == "__main__":
     app.run(debug=True)
