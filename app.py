@@ -39,8 +39,7 @@ def login():
     else:
         con = sqlite3.connect("userdata.db")
         cur = con.cursor()
-        encoded= request.form["Password"].encode()
-        hash=hashlib.sha256(encoded).hexdigest()
+        hash= hashlib.sha256(request.form["Password"].encode()).hexdigest()
         cur.execute("SELECT * FROM User WHERE username = ? and password = ?",
                         (request.form["Username"], hash))
         data = cur.fetchall()
@@ -55,6 +54,26 @@ def login():
 @app.route("/w")
 def welcome():
     return render_template("welcome.html")
+
+@app.route("/password")
+def password():
+    if request.method == "GET":    
+        if "Username" in session:
+            return render_template("change_password.html")
+        else:
+            return redirect("index.html")
+    else:
+        if "Username" in session:
+            con = sqlite3.connect("userdata.db")
+            cur = con.cursor()
+            hash= hashlib.sha256(request.form["Password"].encode()).hexdigest()
+            cur.execute("UPDATE User SET password = ? WHERE username = ?",
+                            (hash, session["Username"]))
+            con.commit()
+            con.close()
+            return "Password Updated"
+        else:
+            return redirect("index.html")
 
 @app.route("/logout")
 def logout():
