@@ -61,19 +61,19 @@ def password():
         if "Username" in session:
             return render_template("change_password.html")
         else:
-            return redirect("index.html")
+            return render_template("index.html")
     else:
         if "Username" in session:
             con = sqlite3.connect("userdata.db")
             cur = con.cursor()
             hash= hashlib.sha256(request.form["Password"].encode()).hexdigest()
-            cur.execute("UPDATE User SET password = ? WHERE username = ?",
+            cur.execute("UPDATE User SET Password = ? WHERE Username = ?",
                             (hash, session["Username"]))
             con.commit()
             con.close()
             return "Password Updated"
         else:
-            return redirect("index.html")
+            return render_template("index.html")
 
 @app.route("/logout")
 def logout():
